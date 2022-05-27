@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CKiralama.Model.Kullanıcı>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+   
+
+    <p>
+        @Html.ActionLink("Yeni Ekle", "Create")
+    </p>
+
+
+    <table class="table" border="5" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soyad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sifre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DogumTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KanGrup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EhliyetSinifi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yetki.ad)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sifre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DogumTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KanGrup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EhliyetSinifi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yetki.ad)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.KullanıcıID }) |
+                    @Html.ActionLink("Detay", "Details", new { id = item.KullanıcıID }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.KullanıcıID })
+                   
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

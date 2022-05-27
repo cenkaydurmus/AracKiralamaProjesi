@@ -1,0 +1,186 @@
+﻿
+@model CKiralama.Model.AracRezervasyon
+@{
+    Layout = null;
+}
+
+
+
+<script type="text/javascript">
+
+    function ToplamUcretHesapla();
+
+
+    { 
+
+        var dt1 = new Date(İstasyonAlisTarihi.value);
+        var dt2 = new Date(istasyonBitisTarihi.value);
+        var timeDiff = Math.abs(dt2.getTime() - dt1.getTime());
+        var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        var birimFiyat = parseFloat(Fiyat.value);
+        Ucret.value = parseInt(daysDiff) * birimFiyat;
+
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rezervation</title>
+
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+
+        <h1>CD RENT A CAR</h1>
+
+
+        <h3>Araç Bilgileri Ekranı</h3>
+        <table class="table" border="5" cellpadding="0" cellspacing="0" width="500">
+
+
+            <tr>
+
+                <td>
+                    <h4>Araç No: @Url.RequestContext.RouteData.Values["id"]</h4>
+                    <h4>Araç Markası:@ViewData["Marka"]</h4>
+                    <h4>Araç Model:@ViewData["Model"]</h4>
+                    <h4>Araç Fiyat:@ViewData["Fiyat"]</h4>
+
+                </td>
+                <td>
+
+                <td width="40%">
+                    @{
+
+                        var dir = "~/AracResim/" + Url.RequestContext.RouteData.Values["id"] + ".jpg";
+                        // string FolderPath = Path.Combine(Server.MapPath(dir));
+                        //if (System.IO.File.Exists(FolderPath))
+
+
+
+                        <img src="@Url.Content(dir)" width="500" />
+
+
+
+                    }
+        </table>
+
+
+
+
+
+        <table class="table" border="5" cellpadding="0" cellspacing="0" width="500">
+            <h3>Rezervasyon Formu</h3>
+            @{
+                if (ViewBag.Message == null)
+
+
+
+
+                {
+                    using (Html.BeginForm())
+
+                    {
+
+
+
+                        @Html.Hidden("aracID", Url.RequestContext.RouteData.Values["id"])
+                       
+
+
+                        <tr>
+                            <td width="40%"> istasyondan Alış Yeri </td>
+                            <td>@Html.EditorFor(model => model.istasyonAlisYeri) </td>
+
+                        </tr>
+
+                        <tr>
+                            <td> İstasyona Teslim Yeri </td>
+                            <td>@Html.EditorFor(model => model.İstasyonTeslimYeri) </td>
+
+                        </tr>
+
+                        <tr>
+                            <td> İstasyondan Alış Tarihi </td>
+                            <td>@Html.EditorFor(model => model.İstasyonAlisTarihi) </td>
+
+                        </tr>
+
+                        <tr>
+                            <td> İstasyona Bırakma Tarihi </td>
+                            <td>@Html.TextBoxFor(model => model.istasyonBitisTarihi, new{onblur ="ToplamUcretHesapla()"}) </td>
+
+                        </tr>
+
+
+
+
+                        <tr>
+                            <td> Fiyat (Günlük) </td>
+                            <td>@Html.TextBox("Fiyat", ViewData["Fiyat"]) TL </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td> Toplam Ücret </td>
+                            <td>@Html.TextBoxFor(model => model.Ucret) TL </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td></td>
+                            <td>  <input type="submit" value="Rezervasyon Yap" />         </td>
+
+                        </tr>
+
+
+
+
+
+
+
+
+
+                    } @*//if (ViewBag.Message == null)*@
+
+                }
+
+
+            }
+        </table>
+
+
+    </div>
+    @ViewBag.Message
+    <hr />
+    <p>
+        @Html.ActionLink("Araç Detayı", "Details", new { id = Url.RequestContext.RouteData.Values["id"] })
+        |
+        @Html.ActionLink("Araç Listesi", "Index")
+        @Html.ActionLink("Rezervasyonlarım","Giris", "Giris")
+    </p>
+</body>
+</html>

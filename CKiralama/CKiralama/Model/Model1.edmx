@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CKiralamaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AracBilgisi">
+          <Key>
+            <PropertyRef Name="aracID" />
+          </Key>
+          <Property Name="aracID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aracMarka" Type="varchar" MaxLength="20" />
+          <Property Name="aracDepo" Type="varchar" MaxLength="20" />
+          <Property Name="aracVites" Type="varchar" MaxLength="20" />
+          <Property Name="aracFiyat" Type="money" />
+          <Property Name="aracKapisi" Type="tinyint" />
+          <Property Name="aracKoltuk" Type="tinyint" />
+          <Property Name="aracBagaj" Type="varchar" MaxLength="20" />
+          <Property Name="aracTipi" Type="varchar" MaxLength="20" />
+          <Property Name="aracModel" Type="varchar" MaxLength="20" />
+          <Property Name="ehliyetSinif" Type="char" MaxLength="1" />
+          <Property Name="modelID" Type="int" />
+          <Property Name="modelyili" Type="int" />
+          <Property Name="ımage" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AracRezervasyon">
+          <Key>
+            <PropertyRef Name="rezervasyonID" />
+          </Key>
+          <Property Name="rezervasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="istasyonAlisYeri" Type="varchar" MaxLength="100" />
+          <Property Name="İstasyonTeslimYeri" Type="varchar" MaxLength="100" />
+          <Property Name="İstasyonAlisTarihi" Type="date" />
+          <Property Name="istasyonBitisTarihi" Type="date" />
+          <Property Name="rezervasyondurum" Type="varchar" MaxLength="50" />
+          <Property Name="KulllanıcıID" Type="int" Nullable="false" />
+          <Property Name="aracID" Type="int" Nullable="false" />
+          <Property Name="İptalMi" Type="varchar" MaxLength="10" />
+          <Property Name="İptalTarihi" Type="date" />
+          <Property Name="Ucret" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="İstasyonYeri">
+          <Key>
+            <PropertyRef Name="istasyonID" />
+          </Key>
+          <Property Name="istasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="İstasyonAdi" Type="varchar" MaxLength="20" />
+          <Property Name="istasyonSehri" Type="varchar" MaxLength="20" />
+          <Property Name="istasyonAdres" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Kullanıcı">
+          <Key>
+            <PropertyRef Name="KullanıcıID" />
+          </Key>
+          <Property Name="KullanıcıID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="20" />
+          <Property Name="Soyad" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="Sifre" Type="varchar" MaxLength="20" />
+          <Property Name="Adres" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="char" MaxLength="10" />
+          <Property Name="DogumTarihi" Type="datetime" />
+          <Property Name="KanGrup" Type="varchar" MaxLength="20" />
+          <Property Name="EhliyetSinifi" Type="char" MaxLength="10" />
+          <Property Name="YetkiID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="markaID" />
+          </Key>
+          <Property Name="markaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="markaAdi" Type="varchar" MaxLength="20" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="modelID" />
+          </Key>
+          <Property Name="modelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modelAdi" Type="varchar" MaxLength="20" />
+          <Property Name="markaID" Type="int" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ucret">
+          <Key>
+            <PropertyRef Name="TipID" />
+          </Key>
+          <Property Name="TipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kartno" Type="int" />
+          <Property Name="cvv" Type="int" />
+          <Property Name="sonkTarih" Type="date" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="YetkiID" />
+          </Key>
+          <Property Name="YetkiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Kullanıcı_Yetki">
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="1" />
+          <End Role="Kullanıcı" Type="Self.Kullanıcı" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetki">
+              <PropertyRef Name="YetkiID" />
+            </Principal>
+            <Dependent Role="Kullanıcı">
+              <PropertyRef Name="YetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CKiralamaModelStoreContainer">
+          <EntitySet Name="AracBilgisi" EntityType="Self.AracBilgisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AracRezervasyon" EntityType="Self.AracRezervasyon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İstasyonYeri" EntityType="Self.İstasyonYeri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ucret" EntityType="Self.Ucret" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kullanıcı_Yetki" Association="Self.FK_Kullanıcı_Yetki">
+            <End Role="Yetki" EntitySet="Yetki" />
+            <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CKiralamaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AracBilgisi">
+          <Key>
+            <PropertyRef Name="aracID" />
+          </Key>
+          <Property Name="aracID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aracMarka" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="aracDepo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="aracVites" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="aracFiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="aracKapisi" Type="Byte" />
+          <Property Name="aracKoltuk" Type="Byte" />
+          <Property Name="aracBagaj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="aracTipi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="aracModel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ehliyetSinif" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="modelID" Type="Int32" />
+          <Property Name="modelyili" Type="Int32" />
+          <Property Name="ımage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AracRezervasyon">
+          <Key>
+            <PropertyRef Name="rezervasyonID" />
+          </Key>
+          <Property Name="rezervasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="istasyonAlisYeri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="İstasyonTeslimYeri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="İstasyonAlisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="istasyonBitisTarihi" Type="DateTime" Precision="0" />
+          <Property Name="rezervasyondurum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KulllanıcıID" Type="Int32" Nullable="false" />
+          <Property Name="aracID" Type="Int32" Nullable="false" />
+          <Property Name="İptalMi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="İptalTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Ucret" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="İstasyonYeri">
+          <Key>
+            <PropertyRef Name="istasyonID" />
+          </Key>
+          <Property Name="istasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="İstasyonAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="istasyonSehri" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="istasyonAdres" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Kullanıcı">
+          <Key>
+            <PropertyRef Name="KullanıcıID" />
+          </Key>
+          <Property Name="KullanıcıID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KanGrup" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EhliyetSinifi" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="YetkiID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Yetki" Relationship="Self.FK_Kullanıcı_Yetki" FromRole="Kullanıcı" ToRole="Yetki" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="markaID" />
+          </Key>
+          <Property Name="markaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="markaAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="modelID" />
+          </Key>
+          <Property Name="modelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modelAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="markaID" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ucret">
+          <Key>
+            <PropertyRef Name="TipID" />
+          </Key>
+          <Property Name="TipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kartno" Type="Int32" />
+          <Property Name="cvv" Type="Int32" />
+          <Property Name="sonkTarih" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Yetki">
+          <Key>
+            <PropertyRef Name="YetkiID" />
+          </Key>
+          <Property Name="YetkiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kullanıcı" Relationship="Self.FK_Kullanıcı_Yetki" FromRole="Yetki" ToRole="Kullanıcı" />
+        </EntityType>
+        <Association Name="FK_Kullanıcı_Yetki">
+          <End Role="Yetki" Type="Self.Yetki" Multiplicity="1" />
+          <End Role="Kullanıcı" Type="Self.Kullanıcı" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetki">
+              <PropertyRef Name="YetkiID" />
+            </Principal>
+            <Dependent Role="Kullanıcı">
+              <PropertyRef Name="YetkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CKiralamaEntities8" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AracBilgisi" EntityType="Self.AracBilgisi" />
+          <EntitySet Name="AracRezervasyon" EntityType="Self.AracRezervasyon" />
+          <EntitySet Name="İstasyonYeri" EntityType="Self.İstasyonYeri" />
+          <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Ucret" EntityType="Self.Ucret" />
+          <EntitySet Name="Yetki" EntityType="Self.Yetki" />
+          <AssociationSet Name="FK_Kullanıcı_Yetki" Association="Self.FK_Kullanıcı_Yetki">
+            <End Role="Yetki" EntitySet="Yetki" />
+            <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CKiralamaModelStoreContainer" CdmEntityContainer="CKiralamaEntities8">
+          <EntitySetMapping Name="AracBilgisi">
+            <EntityTypeMapping TypeName="CKiralamaModel.AracBilgisi">
+              <MappingFragment StoreEntitySet="AracBilgisi">
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="aracMarka" ColumnName="aracMarka" />
+                <ScalarProperty Name="aracDepo" ColumnName="aracDepo" />
+                <ScalarProperty Name="aracVites" ColumnName="aracVites" />
+                <ScalarProperty Name="aracFiyat" ColumnName="aracFiyat" />
+                <ScalarProperty Name="aracKapisi" ColumnName="aracKapisi" />
+                <ScalarProperty Name="aracKoltuk" ColumnName="aracKoltuk" />
+                <ScalarProperty Name="aracBagaj" ColumnName="aracBagaj" />
+                <ScalarProperty Name="aracTipi" ColumnName="aracTipi" />
+                <ScalarProperty Name="aracModel" ColumnName="aracModel" />
+                <ScalarProperty Name="ehliyetSinif" ColumnName="ehliyetSinif" />
+                <ScalarProperty Name="modelID" ColumnName="modelID" />
+                <ScalarProperty Name="modelyili" ColumnName="modelyili" />
+                <ScalarProperty Name="ımage" ColumnName="ımage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AracRezervasyon">
+            <EntityTypeMapping TypeName="CKiralamaModel.AracRezervasyon">
+              <MappingFragment StoreEntitySet="AracRezervasyon">
+                <ScalarProperty Name="rezervasyonID" ColumnName="rezervasyonID" />
+                <ScalarProperty Name="istasyonAlisYeri" ColumnName="istasyonAlisYeri" />
+                <ScalarProperty Name="İstasyonTeslimYeri" ColumnName="İstasyonTeslimYeri" />
+                <ScalarProperty Name="İstasyonAlisTarihi" ColumnName="İstasyonAlisTarihi" />
+                <ScalarProperty Name="istasyonBitisTarihi" ColumnName="istasyonBitisTarihi" />
+                <ScalarProperty Name="rezervasyondurum" ColumnName="rezervasyondurum" />
+                <ScalarProperty Name="KulllanıcıID" ColumnName="KulllanıcıID" />
+                <ScalarProperty Name="aracID" ColumnName="aracID" />
+                <ScalarProperty Name="İptalMi" ColumnName="İptalMi" />
+                <ScalarProperty Name="İptalTarihi" ColumnName="İptalTarihi" />
+                <ScalarProperty Name="Ucret" ColumnName="Ucret" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İstasyonYeri">
+            <EntityTypeMapping TypeName="CKiralamaModel.İstasyonYeri">
+              <MappingFragment StoreEntitySet="İstasyonYeri">
+                <ScalarProperty Name="istasyonID" ColumnName="istasyonID" />
+                <ScalarProperty Name="İstasyonAdi" ColumnName="İstasyonAdi" />
+                <ScalarProperty Name="istasyonSehri" ColumnName="istasyonSehri" />
+                <ScalarProperty Name="istasyonAdres" ColumnName="istasyonAdres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanıcı">
+            <EntityTypeMapping TypeName="CKiralamaModel.Kullanıcı">
+              <MappingFragment StoreEntitySet="Kullanıcı">
+                <ScalarProperty Name="KullanıcıID" ColumnName="KullanıcıID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="KanGrup" ColumnName="KanGrup" />
+                <ScalarProperty Name="EhliyetSinifi" ColumnName="EhliyetSinifi" />
+                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marka">
+            <EntityTypeMapping TypeName="CKiralamaModel.Marka">
+              <MappingFragment StoreEntitySet="Marka">
+                <ScalarProperty Name="markaID" ColumnName="markaID" />
+                <ScalarProperty Name="markaAdi" ColumnName="markaAdi" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="CKiralamaModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="modelID" ColumnName="modelID" />
+                <ScalarProperty Name="modelAdi" ColumnName="modelAdi" />
+                <ScalarProperty Name="markaID" ColumnName="markaID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CKiralamaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ucret">
+            <EntityTypeMapping TypeName="CKiralamaModel.Ucret">
+              <MappingFragment StoreEntitySet="Ucret">
+                <ScalarProperty Name="TipID" ColumnName="TipID" />
+                <ScalarProperty Name="kartno" ColumnName="kartno" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="sonkTarih" ColumnName="sonkTarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetki">
+            <EntityTypeMapping TypeName="CKiralamaModel.Yetki">
+              <MappingFragment StoreEntitySet="Yetki">
+                <ScalarProperty Name="YetkiID" ColumnName="YetkiID" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,117 @@
+﻿@model CKiralama.Model.AracBilgisi
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+
+
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        <h1>CD Rent A CAR </h1>
+        <h4>Arac Bilgileri</h4>
+        <hr />
+
+        <table class="table" border="5" cellpadding="0" cellspacing="0" width="500">
+
+            <tr>
+
+                <td colspan="2">
+                    @{
+
+                        var dir = "~/AracResim/" + @Html.DisplayFor(model => model.aracID) + ".jpg";
+                        string FolderPath = Path.Combine(Server.MapPath(dir));
+                        if (System.IO.File.Exists(FolderPath))
+
+                        
+
+                            <img src="@Url.Content(dir)" width="200" />
+                    }
+
+                    
+
+
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <td width="30%"> Marka </td>
+                <td>@Html.DisplayFor(model => model.aracMarka) </td>
+
+            </tr>
+
+            <tr>
+                <td width="30%"> Depo Durumu </td>
+                <td>@Html.DisplayFor(model => model.aracDepo) </td>
+
+            </tr>
+
+            <tr>
+                <td width="30%"> Vites  </td>
+                <td>@Html.DisplayFor(model => model.aracVites) </td>
+
+            </tr>
+
+
+            <tr>
+                <td width="30%"> Fiyat </td>
+                <td>@Html.DisplayFor(model => model.aracFiyat)  TL </td>
+
+            </tr>
+
+            <tr>
+                <td width="30%"> Kapı </td>
+                <td>@Html.DisplayFor(model => model.aracKapisi) </td>
+
+            </tr>
+
+            <tr>
+                <td width="30%"> Koltuk </td>
+                <td>@Html.DisplayFor(model => model.aracKoltuk) </td>
+
+            </tr>
+
+            <tr>
+                <td width="30%"> Tipi </td>
+                <td>@Html.DisplayFor(model => model.aracTipi) </td>
+
+            </tr>
+
+
+            <tr>
+                <td width="30%"> Model </td>
+                <td>@Html.DisplayFor(model => model.aracModel) </td>
+
+            </tr>
+
+            <tr>
+                <td width="30%"> Ehliyet Durumu </td>
+                <td>@Html.DisplayFor(model => model.ehliyetSinif) </td>
+
+            </tr>
+
+
+            <tr>
+                <td width="30%"> Model Yılı </td>
+                <td>@Html.DisplayFor(model => model.modelyili) </td>
+
+            </tr>
+
+
+
+            
+
+    </div>
+    <p>
+        @Html.ActionLink("Rezervasyon", "Rezervation", new { id = Model.aracID }) |
+        @Html.ActionLink("Araç Listesi", "Index")
+    </p>
+</body>
+</html>

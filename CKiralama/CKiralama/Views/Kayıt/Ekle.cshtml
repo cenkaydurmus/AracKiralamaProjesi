@@ -1,0 +1,64 @@
+﻿
+@model CKiralama.Model.Kullanıcı
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Kayıt Formu</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="~/web/webs/csscss/nunito-font.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="~/web/webs/css/style.css" />
+</head>
+<body class="form-v6">
+    <div class="page-content">
+        <div class="form-v6-content">
+
+            <form class="form-detail" action="#" method="post">
+                <h2>Kayıt Formu</h2>
+                <div class="form-row">
+                    <input type="text" name="Ad" id="Ad"  class="input-text" placeholder="Adınızı Giriniz:" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="Soyad" id="Soyad" class="input-text" placeholder="Soyadınızı Giriniz:" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="Email" id="Email" class="input-text" placeholder="E-Mail Giriniz:" required>
+                </div>
+                <div class="form-row">
+                    <input type="password" name="Sifre" id="Sifre" class="input-text" placeholder=" Şifre Giriniz:" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="Adres" id="Adres" class="input-text" placeholder="Adress Giriniz:" required>
+                </div>
+
+                <div class="form-row">
+                    <input type="text" name="Telefon" id="Telefon" class="input-text" placeholder=" Tel-No Giriniz:" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="DogumTarihi" id="DogumTarih" class="input-text" placeholder="DoğumTarihi Giriniz:" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="KanGrup" id="KanGrup" class="input-text" placeholder=" Kan Grubunuzu Giriniz:" required>
+                </div>
+
+                <div class="form-row">
+                    <input type="text" name="EhliyetSinifi" id="EhliyetSinifi" class="input-text" placeholder=" Ehliyet Tipi Giriniz:" required>
+                </div>
+
+
+
+                <div class="form-row-last">
+                    <input type="submit" name="register" class="register" value="Kaydet">
+                </div>
+            </form>
+    </div>
+    </div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

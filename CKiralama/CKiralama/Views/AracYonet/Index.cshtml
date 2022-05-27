@@ -1,0 +1,142 @@
+﻿@model IEnumerable<CKiralama.Model.AracBilgisi>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Araç Ekle</title>
+
+  
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <p>
+        <h1>CD Rent A CAR </h1>
+        <h3>Araç Listesi </h3>
+    </p>
+
+    <table class="table" border="5" cellpadding="0" cellspacing="0">
+
+        <tr>
+
+            <th>
+                Resim
+            </th>
+
+            <th>
+                Marka
+            </th>
+            <th>
+                Depo Durumu
+            </th>
+            <th>
+                Vites
+            </th>
+            <th>
+                Fiyat
+            </th>
+            <th>
+                Kapı
+            </th>
+            <th>
+                Koltuk
+            </th>
+            <th>
+                Bagaj
+            </th>
+            <th>
+                Tipi
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Ehliyet Durumu
+            </th>
+
+            <th>
+                AracNo
+            </th>
+
+            <th>
+                ModelYılı
+            </th>
+            <th></th>
+
+            @foreach (var item in Model)
+            {
+<tr>
+
+            <td>
+                @{
+
+                    var dir ="~/AracResim/" + item.aracID + ".jpg";
+                    string FolderPath = Path.Combine(Server.MapPath(dir));
+                    if (System.IO.File.Exists(FolderPath))
+                    {
+
+                        <img src="@Url.Content(dir)" width="100" />
+                    }
+
+
+
+
+                }
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.aracMarka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracDepo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracVites)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracFiyat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracKapisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracKoltuk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracBagaj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracTipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aracModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ehliyetSinif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modelID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modelyili)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Detay", "Details", new { id = item.aracID }) |
+                @Html.ActionLink("Rezervasyon", "Rezervation", new { id = item.aracID })
+            </td>
+        </tr>
+        }
+
+    </table>
+</body>
+</html>

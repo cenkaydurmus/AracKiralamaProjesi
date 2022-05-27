@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CKiralamaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ucret">
+    <Key>
+      <PropertyRef Name="TipID" />
+    </Key>
+    <Property Name="TipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kartno" Type="Int32" />
+    <Property Name="cvv" Type="Int32" />
+    <Property Name="sonkTarih" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Yetki">
+    <Key>
+      <PropertyRef Name="YetkiID" />
+    </Key>
+    <Property Name="YetkiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Kullanıcı" Relationship="CKiralamaModel.FK_Kullanıcı_Yetki" FromRole="Yetki" ToRole="Kullanıcı" />
+  </EntityType>
+  <EntityContainer Name="CKiralamaEntities7" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ucret" EntityType="Self.Ucret" />
+    <EntitySet Name="Yetki" EntityType="Self.Yetki" />
+    <EntitySet Name="AracBilgisi" EntityType="CKiralamaModel.AracBilgisi" />
+    <EntitySet Name="AracRezervasyon" EntityType="CKiralamaModel.AracRezervasyon" />
+    <EntitySet Name="İstasyonYeri" EntityType="CKiralamaModel.İstasyonYeri" />
+    <EntitySet Name="Kullanıcı" EntityType="CKiralamaModel.Kullanıcı" />
+    <EntitySet Name="Marka" EntityType="CKiralamaModel.Marka" />
+    <EntitySet Name="Model" EntityType="CKiralamaModel.Model" />
+    <EntitySet Name="sysdiagrams" EntityType="CKiralamaModel.sysdiagrams" />
+    <AssociationSet Name="FK_Kullanıcı_Yetki" Association="CKiralamaModel.FK_Kullanıcı_Yetki">
+      <End Role="Yetki" EntitySet="Yetki" />
+      <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AracBilgisi">
+    <Key>
+      <PropertyRef Name="aracID" />
+    </Key>
+    <Property Name="aracID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aracMarka" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="aracDepo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="aracVites" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="aracFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="aracKapisi" Type="Byte" />
+    <Property Name="aracKoltuk" Type="Byte" />
+    <Property Name="aracBagaj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="aracTipi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="aracModel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ehliyetSinif" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="modelID" Type="Int32" />
+    <Property Name="modelyili" Type="Int32" />
+    <Property Name="ımage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AracRezervasyon">
+    <Key>
+      <PropertyRef Name="rezervasyonID" />
+    </Key>
+    <Property Name="rezervasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="istasyonAlisYeri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="İstasyonTeslimYeri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="İstasyonAlisTarihi" Type="DateTime" Precision="0" />
+    <Property Name="istasyonBitisTarihi" Type="DateTime" Precision="0" />
+    <Property Name="rezervasyondurum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KulllanıcıID" Type="Int32" Nullable="false" />
+    <Property Name="aracID" Type="Int32" Nullable="false" />
+    <Property Name="İptalMi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="İptalTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Ucret" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="İstasyonYeri">
+    <Key>
+      <PropertyRef Name="istasyonID" />
+    </Key>
+    <Property Name="istasyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="İstasyonAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="istasyonSehri" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="istasyonAdres" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="KullanıcıID" />
+    </Key>
+    <Property Name="KullanıcıID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="KanGrup" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EhliyetSinifi" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="YetkiID" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Yetki" Relationship="CKiralamaModel.FK_Kullanıcı_Yetki" FromRole="Kullanıcı" ToRole="Yetki" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="markaID" />
+    </Key>
+    <Property Name="markaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="markaAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="modelID" />
+    </Key>
+    <Property Name="modelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modelAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="markaID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Kullanıcı_Yetki">
+    <End Type="CKiralamaModel.Yetki" Role="Yetki" Multiplicity="1" />
+    <End Type="CKiralamaModel.Kullanıcı" Role="Kullanıcı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yetki">
+        <PropertyRef Name="YetkiID" />
+      </Principal>
+      <Dependent Role="Kullanıcı">
+        <PropertyRef Name="YetkiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

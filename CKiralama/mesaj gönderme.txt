@@ -1,0 +1,94 @@
+Sınıf oluşturuyoruz
+
+
+public class Contact
+{
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string Subject { get; set; }
+    public string Message { get; set; }
+}
+
+
+public static void MailSender(string body)
+{
+    var fromAddress = new MailAddress("mailadresiniz@gmail.com");
+    var toAddress = new MailAddress("mailadresiniz@gmail.com");
+    const string subject = "Site Adı | Sitenizden Gelen İletişim Formu";
+    using (var smtp = new SmtpClient
+    {
+        Host = "smtp.gmail.com",
+        Port = 587,
+        EnableSsl = true,
+        DeliveryMethod = SmtpDeliveryMethod.Network,
+        UseDefaultCredentials = false,
+        Credentials = new NetworkCredential(fromAddress.Address, "Mail_Sifresi")
+    })
+    {
+        using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
+        {
+            smtp.Send(message);
+        }
+    }
+}
+
+
+
+Form Hmtl goruntusu
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "contact-form", action = "" }))
+{
+    <input type="text" name="Name" /><br /><br />
+    <input type="text" name="Email" /><br /><br />
+    <input type="text" name="Subject" /><br /><br />
+    <input type="text" name="Message" /><br /><br />
+    <input type="submit" value="Gönder" class="btn btn-danger" />
+}
+
+
+Mesaj Contoller
+
+[HttpPost]
+public ActionResult Index(Contact model)
+{
+    if (ModelState.IsValid)
+    {
+        var body = new StringBuilder();
+        body.AppendLine("Ad & Soyad: " + model.Name);
+        body.AppendLine("E-Mail Adresi: " + model.Email);
+        body.AppendLine("Konu: " + model.Subject);
+        body.AppendLine("Mesaj: " + model.Message);
+        Mail.MailSender(body.ToString());
+    }
+	ViewBag.Success = true;
+
+    return View();
+}
+
+Index.cshtml 
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "contact-form", action = "" }))
+{
+    if (ViewBag.Success == true)
+    {
+        <span>Mesajınız başarıyla gönderilmiştir.</span>
+    }
+ 
+    <input type="text" name="Name" /><br /><br />
+    <input type="text" name="Email" /><br /><br />
+    <input type="text" name="Subject" /><br /><br />
+    <input type="text" name="Message" /><br /><br />
+    <input type="submit" value="Gönder" class="btn btn-danger" />
+}
+
+
+
+
+
+
+
+
+
+
+

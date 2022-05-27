@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@(Html.Raw(ViewBag.Title))</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/Site/css/style.css")">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <a class="navbar-brand" href="@Url.Action("","")"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAAAyCAIAAACbCCTYAAAACXBIWXMAAA7EAAAOxAGVKw4bAAALy2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIiB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIyLTAzLTIyVDE5OjQwOjQ4KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMi0wNC0wMVQxNzoyMToyMyswMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMi0wNC0wMVQxNzoyMToyMyswMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpiNmM1ODE4ZC00ZjE1LWY0NGEtYTk5Yy1mY2UwMDJjNWJhMjAiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo5YWQxYjZiYi01MGNjLTIzNDAtOTEzYi1hODc3ZWY4Yjc1ZDQiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMjZhZGQxZi1iZTczLTZkNDgtYTk4ZC05MWVlNjBjYjY4MDMiIHRpZmY6T3JpZW50YXRpb249IjEiIHRpZmY6WFJlc29sdXRpb249Ijk2MDAwMC8xMDAwMCIgdGlmZjpZUmVzb2x1dGlvbj0iOTYwMDAwLzEwMDAwIiB0aWZmOlJlc29sdXRpb25Vbml0PSIyIiBleGlmOkNvbG9yU3BhY2U9IjEiIGV4aWY6UGl4ZWxYRGltZW5zaW9uPSIyNTAiIGV4aWY6UGl4ZWxZRGltZW5zaW9uPSIzNiI+IDxwaG90b3Nob3A6VGV4dExheWVycz4gPHJkZjpCYWc+IDxyZGY6bGkgcGhvdG9zaG9wOkxheWVyTmFtZT0iQ0QiIHBob3Rvc2hvcDpMYXllclRleHQ9IkNEIi8+IDxyZGY6bGkgcGhvdG9zaG9wOkxheWVyTmFtZT0iUkVOVCBBIENBUiIgcGhvdG9zaG9wOkxheWVyVGV4dD0iUkVOVCBBIENBUiIvPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOlRleHRMYXllcnM+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MDI2YWRkMWYtYmU3My02ZDQ4LWE5OGQtOTFlZTYwY2I2ODAzIiBzdEV2dDp3aGVuPSIyMDIyLTAzLTIyVDE5OjQwOjQ4KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBpbWFnZS9wbmcgdG8gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YmYzMTM3ZjMtYzc5NS05NjRhLWEwNWMtNWQzZmUwYTAxMjI3IiBzdEV2dDp3aGVuPSIyMDIyLTAzLTMwVDIxOjMwOjMxKzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjUyNDM0ZGNkLTMyYWItN2I0OS05YzU3LWQwZGIzOGZhNzM4OSIgc3RFdnQ6d2hlbj0iMjAyMi0wNC0wMVQxNzoyMToyMyswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjIgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjb252ZXJ0ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImZyb20gYXBwbGljYXRpb24vdm5kLmFkb2JlLnBob3Rvc2hvcCB0byBpbWFnZS9wbmciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImRlcml2ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImNvbnZlcnRlZCBmcm9tIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3Nob3AgdG8gaW1hZ2UvcG5nIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpiNmM1ODE4ZC00ZjE1LWY0NGEtYTk5Yy1mY2UwMDJjNWJhMjAiIHN0RXZ0OndoZW49IjIwMjItMDQtMDFUMTc6MjE6MjMrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdl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" width="250" height="36" "alt=" Web Sitesi Logosu" </a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("","")">Anasayfa</a>
+
+                </li>
+
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index","Cars")">Araçlar <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("EkonomikCars","Cars")">Ekonomik Paket Araçlar</a></li>
+                        <li><a href="@Url.Action("OrtaCars","Cars")">Orta Paket Araçlar</a></li>
+                        <li><a href="@Url.Action("LuxsCars","Cars")">Lüks Paket Araçlar</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index","Station")">Ofislerimiz <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("Durak1","Station")">istanbul</a></li>
+                        <li><a href="@Url.Action("Durak2","Station")">Ankara</a></li>
+                        <li><a href="@Url.Action("Durak3","Station")">Antalya</a></li>
+
+
+                    </ul>
+
+                
+                <li>@Html.ActionLink("Hakkımızda", "About", "Home")</li>
+                <li>@Html.ActionLink("İletişim", "Contact", "Home")</li>
+
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="@Url.Action("Ekle","Kayıt")"><span class="glyphicon glyphicon-user"></span> Üye Ol</a></li>
+                <li><a href="@Url.Action("Giris","Giris")"><span class="glyphicon glyphicon-log-in"></span> Giriş Yap</a></li>
+                
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+
+
+
+    <footer class="site-footer">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="footer-heading mb-4">Proje</h2>
+                    <p>CD Rent Car  Tarafından 2022 Lisans ile Geliştirilmiştir.. </p>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="@Url.Content("~/Content/Site/js/jquery-3.3.1.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.sticky.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery-migrate-3.0.1.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.easing.1.3.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.countdown.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.magnific-popup.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.stellar.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.waypoints.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/mediaelement-and-player.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/slick.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/typed.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.animateNumber.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/jquery.fancybox.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/js/jquery.easing.1.3.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/bootstrap-datepicker.min.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/aos.js")"></script>
+    <script src="@Url.Content("~/Content/Site/js/main.js")"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+

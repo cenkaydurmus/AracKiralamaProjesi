@@ -1,0 +1,108 @@
+﻿
+@model IEnumerable<CKiralama.Model.AracRezervasyon>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Araç Rezervasyon</title>
+
+
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <p>
+        <h1>CD Rent A CAR </h1>
+        <h3>Araç Rezervasyon </h3>
+    </p>
+
+    <table class="table" border="1" cellpadding="0" cellspacing="0" width="500">
+
+        <tr>
+            <th>Araç Resim</th>
+            <th>Rezerv ID</th>
+            <th>Alma Tarihi</th>
+            <th>Rezervasyon Durumu</th>
+            <th>Ücret</th>
+            <th>İptal Mi</th>
+            <th>İptal Tarihi</th>
+            <th></th>
+
+
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @{
+
+                        var dir = "~/AracResim/" + item.aracID + ".jpg";
+                        string FolderPath = Path.Combine(Server.MapPath(dir));
+                        if (System.IO.File.Exists(FolderPath))
+                        {
+
+                            <img src="@Url.Content(dir)" width="100" />
+                        }
+
+
+
+
+                    }
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.rezervasyonID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.İstasyonAlisTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.istasyonBitisTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ucret) TL
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rezervasyondurum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.İptalMi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.İptalTarihi)
+                </td>
+
+
+                <td>
+
+                    @Html.ActionLink("Detay", "Details", new { id = item.aracID }) |
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+

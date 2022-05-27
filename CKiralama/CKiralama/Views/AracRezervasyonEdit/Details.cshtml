@@ -1,0 +1,109 @@
+﻿@model CKiralama.Model.AracRezervasyon
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        <h4>AracRezervasyon</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.istasyonAlisYeri)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.istasyonAlisYeri)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.İstasyonTeslimYeri)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.İstasyonTeslimYeri)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.İstasyonAlisTarihi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.İstasyonAlisTarihi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.istasyonBitisTarihi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.istasyonBitisTarihi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.rezervasyondurum)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.rezervasyondurum)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.KulllanıcıID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.KulllanıcıID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.aracID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.aracID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.İptalMi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.İptalMi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.İptalTarihi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.İptalTarihi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ucret)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ucret)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Düzenle", "Edit", new { id = Model.rezervasyonID }) |
+        @Html.ActionLink("Anasayfaya Dön", "Index")
+    </p>
+</body>
+</html>

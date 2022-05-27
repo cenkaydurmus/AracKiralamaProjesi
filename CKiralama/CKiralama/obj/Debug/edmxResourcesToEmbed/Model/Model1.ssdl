@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CKiralamaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AracBilgisi">
+    <Key>
+      <PropertyRef Name="aracID" />
+    </Key>
+    <Property Name="aracID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aracMarka" Type="varchar" MaxLength="20" />
+    <Property Name="aracDepo" Type="varchar" MaxLength="20" />
+    <Property Name="aracVites" Type="varchar" MaxLength="20" />
+    <Property Name="aracFiyat" Type="money" />
+    <Property Name="aracKapisi" Type="tinyint" />
+    <Property Name="aracKoltuk" Type="tinyint" />
+    <Property Name="aracBagaj" Type="varchar" MaxLength="20" />
+    <Property Name="aracTipi" Type="varchar" MaxLength="20" />
+    <Property Name="aracModel" Type="varchar" MaxLength="20" />
+    <Property Name="ehliyetSinif" Type="char" MaxLength="1" />
+    <Property Name="modelID" Type="int" />
+    <Property Name="modelyili" Type="int" />
+    <Property Name="ımage" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AracRezervasyon">
+    <Key>
+      <PropertyRef Name="rezervasyonID" />
+    </Key>
+    <Property Name="rezervasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="istasyonAlisYeri" Type="varchar" MaxLength="100" />
+    <Property Name="İstasyonTeslimYeri" Type="varchar" MaxLength="100" />
+    <Property Name="İstasyonAlisTarihi" Type="date" />
+    <Property Name="istasyonBitisTarihi" Type="date" />
+    <Property Name="rezervasyondurum" Type="varchar" MaxLength="50" />
+    <Property Name="KulllanıcıID" Type="int" Nullable="false" />
+    <Property Name="aracID" Type="int" Nullable="false" />
+    <Property Name="İptalMi" Type="varchar" MaxLength="10" />
+    <Property Name="İptalTarihi" Type="date" />
+    <Property Name="Ucret" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="İstasyonYeri">
+    <Key>
+      <PropertyRef Name="istasyonID" />
+    </Key>
+    <Property Name="istasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="İstasyonAdi" Type="varchar" MaxLength="20" />
+    <Property Name="istasyonSehri" Type="varchar" MaxLength="20" />
+    <Property Name="istasyonAdres" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="KullanıcıID" />
+    </Key>
+    <Property Name="KullanıcıID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="20" />
+    <Property Name="Soyad" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="20" />
+    <Property Name="Sifre" Type="varchar" MaxLength="20" />
+    <Property Name="Adres" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="char" MaxLength="10" />
+    <Property Name="DogumTarihi" Type="datetime" />
+    <Property Name="KanGrup" Type="varchar" MaxLength="20" />
+    <Property Name="EhliyetSinifi" Type="char" MaxLength="10" />
+    <Property Name="YetkiID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="markaID" />
+    </Key>
+    <Property Name="markaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="markaAdi" Type="varchar" MaxLength="20" />
+    <Property Name="Image" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="modelID" />
+    </Key>
+    <Property Name="modelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="modelAdi" Type="varchar" MaxLength="20" />
+    <Property Name="markaID" Type="int" />
+    <Property Name="Image" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Ucret">
+    <Key>
+      <PropertyRef Name="TipID" />
+    </Key>
+    <Property Name="TipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kartno" Type="int" />
+    <Property Name="cvv" Type="int" />
+    <Property Name="sonkTarih" Type="date" />
+  </EntityType>
+  <EntityType Name="Yetki">
+    <Key>
+      <PropertyRef Name="YetkiID" />
+    </Key>
+    <Property Name="YetkiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Kullanıcı_Yetki">
+    <End Role="Yetki" Type="Self.Yetki" Multiplicity="1" />
+    <End Role="Kullanıcı" Type="Self.Kullanıcı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yetki">
+        <PropertyRef Name="YetkiID" />
+      </Principal>
+      <Dependent Role="Kullanıcı">
+        <PropertyRef Name="YetkiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CKiralamaModelStoreContainer">
+    <EntitySet Name="AracBilgisi" EntityType="Self.AracBilgisi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AracRezervasyon" EntityType="Self.AracRezervasyon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="İstasyonYeri" EntityType="Self.İstasyonYeri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ucret" EntityType="Self.Ucret" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kullanıcı_Yetki" Association="Self.FK_Kullanıcı_Yetki">
+      <End Role="Yetki" EntitySet="Yetki" />
+      <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

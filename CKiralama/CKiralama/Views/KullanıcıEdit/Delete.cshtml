@@ -1,0 +1,122 @@
+﻿@model CKiralama.Model.Kullanıcı
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+    <link href="~/Content/Site/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Kullanıcı Sil</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Ad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Soyad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Soyad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Sifre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sifre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Adres)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Adres)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Telefon)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DogumTarihi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DogumTarihi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.KanGrup)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.KanGrup)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EhliyetSinifi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EhliyetSinifi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Yetki.ad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Yetki.ad)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" /> |
+                @Html.ActionLink("AnaSayfa Dön", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

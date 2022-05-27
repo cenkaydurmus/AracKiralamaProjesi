@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32413.511
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CKiralama", "CKiralama\CKiralama.csproj", "{4E58CD51-05E6-4EB7-9276-65AE04E9D4D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E58CD51-05E6-4EB7-9276-65AE04E9D4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E58CD51-05E6-4EB7-9276-65AE04E9D4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E58CD51-05E6-4EB7-9276-65AE04E9D4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E58CD51-05E6-4EB7-9276-65AE04E9D4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61CD6223-2F33-45DB-9BAE-C1E08E7170FF}
+	EndGlobalSection
+EndGlobal

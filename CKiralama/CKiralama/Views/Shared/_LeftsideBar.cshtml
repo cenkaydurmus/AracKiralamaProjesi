@@ -1,0 +1,113 @@
+﻿
+
+
+
+<aside id="leftsidebar" class="sidebar">
+    <!-- User Info -->
+    <div class="user-info">
+        <div class="image">
+            <img src="~/Content/Admin/images/user.png" width="48" height="48" alt="User" />
+        </div>
+        <div class="info-container">
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cd Rent A Car</div>
+            <div class="email">cdrentcar@gmail.com</div>
+            <div class="btn-group user-helper-dropdown">
+              
+                
+            </div>
+        </div>
+    </div>
+    <!-- #User Info -->
+    <!-- Menu -->
+    <div class="menu">
+        <ul class="list">
+            <li class="header">Admin Panel</li>
+            <li class="active">
+                <a href="@Url.Action("Index","AuthorAdmin")">
+                    <i class="material-icons">home</i>
+                    <span>ANA SAYFA</span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/typography.html">
+                    <span>Marka</span>
+                </a>
+            </li>
+            <li>
+                <a href="pages/typography.html">
+
+
+                    @*<i class="material-icons">text_fields</i>*@
+
+                    <span>Model</span>
+                </a>
+            </li>
+
+
+
+            <li>
+                <a href="pages/helper-classes.html">
+                    @*<i class="material-icons">layers</i>*@
+                    <span>İstasyonYeri</span>
+                </a>
+            </li>
+            <li>
+            <a href="pages/helper-classes.html">
+                @*<i class="material-icons">layers</i>*@
+                <span>Araç Bilgisi</span>
+            </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                    @*<i class="material-icons col-purple">edit</i>*@
+                    <span>Kullanıcı Yönetimi</span>
+                </a>
+                <ul class="ml-menu">
+                    
+                    <li class="active">
+                        <a href="@Url.Action("Create","AuthorAdmin")">Kullanıcı Ekle</a>
+                    </li>
+                    <li class="active">
+                        <a href="@Url.Action("Sil","AuthorAdmin")">Kullanıcı sil</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="@Url.Action("düzenle","AuthorAdmin")">Kullanıcı düzenle</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+            <a href="javascript:void(0);" class="menu-toggle">
+                @*<i class="material-icons col-purple">edit</i>*@
+                <span>Rezervasyon Yönetimi</span>
+            </a>
+            <ul class="ml-menu">
+
+                <li class="active">
+                    <a href="@Url.Action("Create","AuthorAdmin")">Rezervasyon Ekle</a>
+                </li>
+                <li class="active">
+                    <a href="@Url.Action("Sil","AuthorAdmin")">Rezervasyon sil</a>
+                </li>
+
+                <li class="active">
+                    <a href="@Url.Action("düzenle","AuthorAdmin")">Rezervasyon düzenle</a>
+                </li>
+
+                </ul>
+
+                <li>
+                    <a href="@Url.Action("Giris","Giris")">
+                        @*<i class="material-icons">layers</i>*@
+                        <span>Çıkış Yap</span>
+                    </a>
+                </li>
+
+
+
+
+
+</aside>

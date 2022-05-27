@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CKiralamaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AracBilgisi">
+    <Key>
+      <PropertyRef Name="aracID" />
+    </Key>
+    <Property Name="aracID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="aracMarka" Type="varchar" MaxLength="20" />
+    <Property Name="aracDepo" Type="varchar" MaxLength="20" />
+    <Property Name="aracVites" Type="varchar" MaxLength="20" />
+    <Property Name="aracBilgi" Type="varchar" MaxLength="100" />
+    <Property Name="aracFiyat" Type="money" />
+    <Property Name="aracKapisi" Type="tinyint" />
+    <Property Name="aracKoltuk" Type="tinyint" />
+    <Property Name="aracBagaj" Type="varchar" MaxLength="20" />
+    <Property Name="aracTipi" Type="varchar" MaxLength="20" />
+    <Property Name="aracModel" Type="varchar" MaxLength="20" />
+    <Property Name="ehliyetSinif" Type="char" MaxLength="1" />
+    <Property Name="modelID" Type="int" />
+  </EntityType>
+  <EntityType Name="AracRezervasyon">
+    <Key>
+      <PropertyRef Name="rezervasyonID" />
+    </Key>
+    <Property Name="rezervasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="istasyonAlisYeri" Type="int" />
+    <Property Name="İstasyonTeslimYeri" Type="int" />
+    <Property Name="İstasyonAlisTarihi" Type="datetime" />
+    <Property Name="istasyonBitisTarihi" Type="datetime" />
+    <Property Name="rezervasyondurum" Type="varchar" MaxLength="50" />
+    <Property Name="musteriID" Type="int" Nullable="false" />
+    <Property Name="aracID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="İstasyonYeri">
+    <Key>
+      <PropertyRef Name="istasyonID" />
+    </Key>
+    <Property Name="istasyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="İstasyonAdi" Type="varchar" MaxLength="20" />
+    <Property Name="istasyonSehri" Type="varchar" MaxLength="20" />
+    <Property Name="istasyonAdres" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Kullanıcı">
+    <Key>
+      <PropertyRef Name="musteriID" />
+    </Key>
+    <Property Name="musteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="20" />
+    <Property Name="Soyad" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="20" />
+    <Property Name="Sifre" Type="varchar" MaxLength="20" />
+    <Property Name="Adres" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="char" MaxLength="10" />
+    <Property Name="DogumTarihi" Type="date" />
+    <Property Name="KanGrup" Type="varchar" MaxLength="20" />
+    <Property Name="kartno" Type="int" Nullable="false" />
+    <Property Name="EhliyetSinifi" Type="char" MaxLength="1" />
+    <Property Name="YetkiID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="markaID" />
+    </Key>
+    <Property Name="markaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="markaAdi" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="modelID" />
+    </Key>
+    <Property Name="modelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="modelAdi" Type="varchar" MaxLength="20" />
+    <Property Name="markaID" Type="int" />
+  </EntityType>
+  <EntityType Name="OdemeTipi">
+    <Key>
+      <PropertyRef Name="kartno" />
+    </Key>
+    <Property Name="kartno" Type="int" Nullable="false" />
+    <Property Name="Odeme" Type="varchar" MaxLength="50" />
+    <Property Name="sonkTarih" Type="datetime" />
+    <Property Name="ccvNo" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Yetki">
+    <Key>
+      <PropertyRef Name="YetkiID" />
+    </Key>
+    <Property Name="YetkiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_AracBilgisi_Model">
+    <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+    <End Role="AracBilgisi" Type="Self.AracBilgisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="modelID" />
+      </Principal>
+      <Dependent Role="AracBilgisi">
+        <PropertyRef Name="modelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AracKiralama_AracBilgisi">
+    <End Role="AracBilgisi" Type="Self.AracBilgisi" Multiplicity="1" />
+    <End Role="AracRezervasyon" Type="Self.AracRezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AracBilgisi">
+        <PropertyRef Name="aracID" />
+      </Principal>
+      <Dependent Role="AracRezervasyon">
+        <PropertyRef Name="aracID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AracKiralama_Müsteri">
+    <End Role="Kullanıcı" Type="Self.Kullanıcı" Multiplicity="1" />
+    <End Role="AracRezervasyon" Type="Self.AracRezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanıcı">
+        <PropertyRef Name="musteriID" />
+      </Principal>
+      <Dependent Role="AracRezervasyon">
+        <PropertyRef Name="musteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AracRezervasyon_AracBilgisi">
+    <End Role="AracBilgisi" Type="Self.AracBilgisi" Multiplicity="1" />
+    <End Role="AracRezervasyon" Type="Self.AracRezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AracBilgisi">
+        <PropertyRef Name="aracID" />
+      </Principal>
+      <Dependent Role="AracRezervasyon">
+        <PropertyRef Name="aracID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AracRezervasyon_İstasyonYeri1">
+    <End Role="İstasyonYeri" Type="Self.İstasyonYeri" Multiplicity="0..1" />
+    <End Role="AracRezervasyon" Type="Self.AracRezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="İstasyonYeri">
+        <PropertyRef Name="istasyonID" />
+      </Principal>
+      <Dependent Role="AracRezervasyon">
+        <PropertyRef Name="istasyonAlisYeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AracRezervasyon_İstasyonYeri2">
+    <End Role="İstasyonYeri" Type="Self.İstasyonYeri" Multiplicity="0..1" />
+    <End Role="AracRezervasyon" Type="Self.AracRezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="İstasyonYeri">
+        <PropertyRef Name="istasyonID" />
+      </Principal>
+      <Dependent Role="AracRezervasyon">
+        <PropertyRef Name="İstasyonTeslimYeri" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kullanıcı_OdemeTipi">
+    <End Role="OdemeTipi" Type="Self.OdemeTipi" Multiplicity="1" />
+    <End Role="Kullanıcı" Type="Self.Kullanıcı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OdemeTipi">
+        <PropertyRef Name="kartno" />
+      </Principal>
+      <Dependent Role="Kullanıcı">
+        <PropertyRef Name="kartno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_Marka">
+    <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marka">
+        <PropertyRef Name="markaID" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="markaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Müsteri_Yetki">
+    <End Role="Yetki" Type="Self.Yetki" Multiplicity="1" />
+    <End Role="Kullanıcı" Type="Self.Kullanıcı" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yetki">
+        <PropertyRef Name="YetkiID" />
+      </Principal>
+      <Dependent Role="Kullanıcı">
+        <PropertyRef Name="YetkiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CKiralamaModelStoreContainer">
+    <EntitySet Name="AracBilgisi" EntityType="Self.AracBilgisi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AracRezervasyon" EntityType="Self.AracRezervasyon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="İstasyonYeri" EntityType="Self.İstasyonYeri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OdemeTipi" EntityType="Self.OdemeTipi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AracBilgisi_Model" Association="Self.FK_AracBilgisi_Model">
+      <End Role="Model" EntitySet="Model" />
+      <End Role="AracBilgisi" EntitySet="AracBilgisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AracKiralama_AracBilgisi" Association="Self.FK_AracKiralama_AracBilgisi">
+      <End Role="AracBilgisi" EntitySet="AracBilgisi" />
+      <End Role="AracRezervasyon" EntitySet="AracRezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AracKiralama_Müsteri" Association="Self.FK_AracKiralama_Müsteri">
+      <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+      <End Role="AracRezervasyon" EntitySet="AracRezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AracRezervasyon_AracBilgisi" Association="Self.FK_AracRezervasyon_AracBilgisi">
+      <End Role="AracBilgisi" EntitySet="AracBilgisi" />
+      <End Role="AracRezervasyon" EntitySet="AracRezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AracRezervasyon_İstasyonYeri1" Association="Self.FK_AracRezervasyon_İstasyonYeri1">
+      <End Role="İstasyonYeri" EntitySet="İstasyonYeri" />
+      <End Role="AracRezervasyon" EntitySet="AracRezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AracRezervasyon_İstasyonYeri2" Association="Self.FK_AracRezervasyon_İstasyonYeri2">
+      <End Role="İstasyonYeri" EntitySet="İstasyonYeri" />
+      <End Role="AracRezervasyon" EntitySet="AracRezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kullanıcı_OdemeTipi" Association="Self.FK_Kullanıcı_OdemeTipi">
+      <End Role="OdemeTipi" EntitySet="OdemeTipi" />
+      <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_Marka" Association="Self.FK_Model_Marka">
+      <End Role="Marka" EntitySet="Marka" />
+      <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Müsteri_Yetki" Association="Self.FK_Müsteri_Yetki">
+      <End Role="Yetki" EntitySet="Yetki" />
+      <End Role="Kullanıcı" EntitySet="Kullanıcı" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
